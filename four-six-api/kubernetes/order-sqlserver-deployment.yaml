@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqlserver-order-deployment
+  labels:
+    app: sqlserver-order-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ordermssql
+  template:
+    metadata:
+      labels:
+        app: ordermssql
+    spec:
+      containers:
+      - name: ordermssql
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports:
+          - containerPort: 1433
+        env:
+        - name: MSSQL_SA_PASSWORD
+          value: 'SenhaDoBanco(123)'
+        - name: ACCEPT_EULA
+          value: "Y"
+        #volumeMounts:
+        #- name: ordermssqldb
+        #  mountPath: /var/opt/mssql/data
+      volumes:
+      - name: ordermssqldb
+        persistentVolumeClaim:
+          claimName: mssql-order-pvc

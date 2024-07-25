@@ -1,0 +1,36 @@
+------------VOLUME------------
+kubectl apply -f order-pv-volume.yaml
+kubectl apply -f order-pv-claim.yaml
+
+----------SQL SERVER----------
+kubectl apply -f order-sqlserver-deployment.yaml
+kubectl apply -f order-sqlserver-service.yaml
+
+--------------API-------------
+kubectl apply -f order-api-deployment.yaml
+kubectl apply -f order-api-service.yaml
+
+
+---------RODAR TODOS-----------
+kubectl apply -f order-sqlserver-deployment.yaml,order-sqlserver-service.yaml,order-api-deployment.yaml,order-api-service.yaml
+
+
+--------------GET-------------
+kubectl get all
+kubectl get pod
+kubectl get deployment
+kubectl get service
+kubectl get pv
+kubectl get pvc
+
+
+------------DELETE------------
+kubectl delete service --all
+kubectl delete deployment --all
+kubectl delete pod --all
+kubectl delete pvc --all
+kubectl delete pv --all
+
+
+---------DELETE ALL---------
+kubectl delete all --all
