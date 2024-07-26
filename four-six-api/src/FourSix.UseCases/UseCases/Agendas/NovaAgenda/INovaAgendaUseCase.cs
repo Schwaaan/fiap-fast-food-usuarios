@@ -7,6 +7,6 @@ namespace FourSix.UseCases.UseCases.Agendas.NovaAgenda
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task<Agenda> Execute(DateTime dataAgenda, Guid medicoId);
+        Task<Agenda> Execute(DateTime dataAgenda, Guid medicoId, ICollection<Tuple<DateTime, DateTime>> horarios);
     }
 }

@@ -3,15 +3,17 @@
     public class AgendaHorario
     {
         public AgendaHorario() { }
-        public AgendaHorario(Guid agendaId, string hora, string status)
+        public AgendaHorario(Guid agendaId, DateTime horaInicio, DateTime horaFim, string status)
         {
             AgendaId = agendaId;
-            Hora = hora;
+            HoraInicio = horaInicio;
+            HoraFim = horaFim;
             Status = status;
         }
 
         public Guid AgendaId { get; }
-        public string Hora { get; }
+        public DateTime HoraInicio { get; }
+        public DateTime HoraFim { get; }
         public string Status { get; }
     }
 }

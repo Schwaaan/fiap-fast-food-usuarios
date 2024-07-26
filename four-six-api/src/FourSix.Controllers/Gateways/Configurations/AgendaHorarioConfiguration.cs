@@ -15,14 +15,19 @@ namespace FourSix.Controllers.Gateways.Configurations
             }
 
             builder.ToTable("AgendaHorario");
-            builder.HasKey(e => new { e.AgendaId, e.Hora });
+            builder.HasKey(e => new { e.AgendaId, e.HoraInicio });
 
             builder.Property(b => b.AgendaId)
                 .IsRequired()
                 .ValueGeneratedNever()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
-            builder.Property(b => b.Hora)
+            builder.Property(b => b.HoraInicio)
+                .IsRequired()
+                .ValueGeneratedNever()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.HoraFim)
                 .IsRequired()
                 .ValueGeneratedNever()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);

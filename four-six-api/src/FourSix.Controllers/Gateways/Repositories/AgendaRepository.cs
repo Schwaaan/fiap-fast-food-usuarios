@@ -13,12 +13,12 @@ namespace FourSix.Controllers.Gateways.Repositories
 
         public override IEnumerable<Agenda> Listar(Expression<Func<Agenda, bool>>? predicate = null)
         {
-            var pedidos = _context.Set<Agenda>().Include(i => i.Horarios).Include(i => i.Horarios);
+            var agendas = _context.Set<Agenda>().Include(i => i.Horarios).Include(i => i.Horarios);
 
             if (predicate == null)
-                return pedidos.AsNoTracking();
+                return agendas.AsNoTracking();
             else
-                return pedidos.Where(predicate).AsNoTracking();
+                return agendas.Where(predicate).AsNoTracking();
         }
     }
 }

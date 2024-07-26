@@ -1,4 +1,5 @@
-﻿using FourSix.Controllers.Adapters.Agendas.NovaAgenda;
+﻿using FourSix.Controllers.Adapters.Agendas.AlteraAgenda;
+using FourSix.Controllers.Adapters.Agendas.NovaAgenda;
 using FourSix.Controllers.Adapters.Medicos.ObtemMedico;
 using FourSix.Controllers.Adapters.Pacientes.ObtemPaciente;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +35,7 @@ namespace FourSix.WebApi.Modules
 
             #endregion
 
-            #region [ Pedidos ]
+            #region [ Agendas ]
 
             app.MapPost("agendas/anonymous",
             [SwaggerOperation(Summary = "Cria nova agenda")]
@@ -44,10 +45,17 @@ namespace FourSix.WebApi.Modules
             }).WithTags("Agendas").AllowAnonymous();
 
             app.MapPost("agendas",
-            [SwaggerOperation(Summary = "Cria novo pedido")]
+            [SwaggerOperation(Summary = "Cria nova agenda")]
             ([FromBody] NovaAgendaRequest request, INovaAgendaAdapter adapter) =>
             {
                 return adapter.Inserir(request);
+            }).WithTags("Agendas").RequireAuthorization();
+
+            app.MapPut("agendas/{id}",
+            [SwaggerOperation(Summary = "Altera agenda")]
+            ([SwaggerParameter("Id da agenda")] Guid id, [FromBody] AlteraAgendaRequest request, IAlteraAgendaAdapter adapter) =>
+            {
+                return adapter.Alterar(id, request);
             }).WithTags("Agendas").RequireAuthorization();
 
             #endregion

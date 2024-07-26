@@ -15,9 +15,9 @@ namespace FourSix.Controllers.Adapters.Agendas.NovaAgenda
         }
 
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovaAgendaResponse))]
-        public async Task<NovaAgendaResponse> Inserir(NovaAgendaRequest pedido)
+        public async Task<NovaAgendaResponse> Inserir(NovaAgendaRequest agendaRequest)
         {
-            var model = new AgendaModel(await _useCase.Execute(pedido.DataAgenda, pedido.MedicoId));
+            var model = new AgendaModel(await _useCase.Execute(agendaRequest.DataAgenda, agendaRequest.MedicoId, agendaRequest.Horarios));
 
             return new NovaAgendaResponse(model);
         }
